@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import artyomgura.kinopoisker.databinding.FragmentPopularBinding
 
 class PopularFragment : Fragment() {
@@ -32,9 +33,17 @@ class PopularFragment : Fragment() {
             textView.text = it
         }
 
+        val recyclerView: RecyclerView = binding.recyclerFilms
+
+
         Log.d("AAA", "popular fragment view created")
 
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("AAA", "popular fragment resumed")
     }
 
     override fun onDestroyView() {
@@ -57,11 +66,6 @@ class PopularFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         Log.d("AAA", "popular fragment started")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("AAA", "popular fragment resumed")
     }
 
     override fun onDestroy() {
