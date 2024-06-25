@@ -39,8 +39,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
     override fun onPause() {
         super.onPause()
         Log.d("AAA", "Main Activity paused")

@@ -33,7 +33,7 @@ class PopularFragment : Fragment() {
             textView.text = it
         }
 
-        val recyclerView: RecyclerView = binding.recyclerFilms
+//        val recyclerView: RecyclerView = binding.recyclerFilms
 
 
         Log.d("AAA", "popular fragment view created")

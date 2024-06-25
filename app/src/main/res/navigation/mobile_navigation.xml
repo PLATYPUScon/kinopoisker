@@ -9,7 +9,8 @@
         android:id="@+id/navigation_popular"
         android:name="artyomgura.kinopoisker.ui.popular.PopularFragment"
         android:label="@string/title_popular"
-        tools:layout="@layout/fragment_popular" />
+        tools:layout="@layout/fragment_popular" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorite"

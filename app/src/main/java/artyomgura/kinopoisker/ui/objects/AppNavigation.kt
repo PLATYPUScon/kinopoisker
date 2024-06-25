@@ -1,9 +1,7 @@
 package artyomgura.kinopoisker.ui.objects
 
-import android.content.res.Resources
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,6 +11,7 @@ import artyomgura.kinopoisker.databinding.ActivityMainBinding
 
 class AppNavigation(private val activity: AppCompatActivity, private val binding: ActivityMainBinding) {
     private lateinit var navController: NavController
+
 
     fun create() {
         initNavigation()
@@ -24,12 +23,13 @@ class AppNavigation(private val activity: AppCompatActivity, private val binding
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 (R.id.navigation_popular) -> {
+//                    binding.buttonPopular.setBackgroundColor(ContextCompat.getColor(activity, R.color.cyan))
+                    binding.buttonFavorite.background.alpha = 130
                     binding.buttonPopular.background.alpha = 255
-                    binding.buttonFavorite.background.alpha = 80
                     showNavButtonsFavoritePopular()
                 }
                 (R.id.navigation_favorite) -> {
-                    binding.buttonPopular.background.alpha = 80
+                    binding.buttonPopular.background.alpha = 130
                     binding.buttonFavorite.background.alpha = 255
                     showNavButtonsFavoritePopular()
                 }
