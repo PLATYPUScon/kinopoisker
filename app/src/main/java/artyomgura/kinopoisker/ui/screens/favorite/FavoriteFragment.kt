@@ -1,4 +1,4 @@
-package artyomgura.kinopoisker.ui.favorite
+package artyomgura.kinopoisker.ui.screens.favorite
 
 import android.content.Context
 import android.os.Bundle

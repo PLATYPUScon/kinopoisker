@@ -1,4 +1,4 @@
-package artyomgura.kinopoisker.ui.popular
+package artyomgura.kinopoisker.ui.screens.popular
 
 import android.content.Context
 import android.os.Bundle
@@ -22,28 +22,35 @@ class PopularFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val popularViewModel =
-            ViewModelProvider(this).get(PopularViewModel::class.java)
-
         _binding = FragmentPopularBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textPopular
-        popularViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-
-//        val recyclerView: RecyclerView = binding.recyclerFilms
-
-
         Log.d("AAA", "popular fragment view created")
 
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val popularViewModel =
+            ViewModelProvider(this).get(PopularViewModel::class.java)
+
+        val textView: TextView = binding.textPopular
+
+        popularViewModel.text.observe(viewLifecycleOwner) {
+            textView.text = it
+        }
+
+        popularViewModel.getFilmById()
+
+        Log.d("AAA", "popular fragment view created")
+    }
+
+
     override fun onResume() {
         super.onResume()
         Log.d("AAA", "popular fragment resumed")
+
     }
 
     override fun onDestroyView() {

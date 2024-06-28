@@ -1,9 +1,12 @@
-package artyomgura.kinopoisker
+package artyomgura.kinopoisker.ui
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import artyomgura.kinopoisker.data.api.KinopoiskerApiService
+import artyomgura.kinopoisker.data.repository.KinopoiskerApiRepositoryImpl
 import artyomgura.kinopoisker.databinding.ActivityMainBinding
+import artyomgura.kinopoisker.domain.repository.KinopoiskerApiRepository
 import artyomgura.kinopoisker.ui.objects.AppNavigation
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +34,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initFields() {
-         appNavigation= AppNavigation(this, binding)
+        appNavigation= AppNavigation(this, binding)
+
     }
     private fun initFun() {
          appNavigation.create()
