@@ -7,25 +7,26 @@ import androidx.lifecycle.viewModelScope
 import artyomgura.kinopoisker.data.api.KinopoiskerApiService
 import artyomgura.kinopoisker.data.repository.KinopoiskerApiRepositoryImpl
 import artyomgura.kinopoisker.domain.usecase.GetFilmByIdUseCase
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
 class PopularViewModel : ViewModel() {
 
-
-    val apiService: KinopoiskerApiService = KinopoiskerApiService.create()
-    val kinopoiskerApiRepository = KinopoiskerApiRepositoryImpl(apiService)
-
+    private val apiService: KinopoiskerApiService = KinopoiskerApiService.create()
+    private val kinopoiskerApiRepository = KinopoiskerApiRepositoryImpl(apiService)
     val getFilmByIdUseCase = GetFilmByIdUseCase(kinopoiskerApiRepository)
+
+    private val coroutineExceptionHandler = CoroutineExceptionHandler{ _, throwable ->
+        throwable.printStackTrace()
+    }
 
     private val _text = MutableLiveData<String?>()
     val text: LiveData<String?> = _text
 
     fun getFilmById()  {
-        viewModelScope.launch {
-//            val res = apiService.getFilmById(301)
-//            val res = getFilmByIdUseCase(301)
-            _text.postValue("пупок")
+        viewModelScope.launch(coroutineExceptionHandler) {
+            val res = getFilmByIdUseCase(301)
+            _text.postValue(res.name)
         }
     }
 }
