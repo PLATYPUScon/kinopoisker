@@ -9,8 +9,13 @@ import artyomgura.kinopoisker.domain.repository.KinopoiskerApiRepository
 class KinopoiskerApiRepositoryImpl(
     private val kinopoiskerApiService: KinopoiskerApiService
 ) : KinopoiskerApiRepository {
+
     override suspend fun getFilmById(id: Int): Film {
         return kinopoiskerApiService.getFilmById(id).toFilm()
+    }
+
+    override suspend fun getTopFilms(): List<Film> {
+        return kinopoiskerApiService.getTopFilms().films.map { it.toFilm()}
     }
 
 }

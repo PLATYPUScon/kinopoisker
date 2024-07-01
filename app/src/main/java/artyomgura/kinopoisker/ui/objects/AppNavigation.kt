@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import artyomgura.kinopoisker.R
 import artyomgura.kinopoisker.databinding.ActivityMainBinding
 
@@ -52,14 +53,15 @@ class AppNavigation(private val activity: AppCompatActivity, private val binding
             )
         )
 
-        setupActionBarWithNavController(activity, navController, appBarConfiguration)
+        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
+//        setupActionBarWithNavController(activity, navController, appBarConfiguration)
 //        binding.buttonPopular.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.navigation_popular, null))
 //        binding.buttonFavorite.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.navigation_favorite, null))
     }
     private fun showNavButtonsFavoritePopular() {
-        binding.navView.visibility = View.VISIBLE
+        binding.navButtons.visibility = View.VISIBLE
     }
     private fun hideNavButtonsFavoritePopular() {
-        binding.navView.visibility = View.GONE
+        binding.navButtons.visibility = View.GONE
     }
 }

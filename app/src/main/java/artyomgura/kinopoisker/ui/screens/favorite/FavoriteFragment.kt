@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import artyomgura.kinopoisker.R
 import artyomgura.kinopoisker.databinding.FragmentFavoriteBinding
+import com.squareup.picasso.Picasso
 
 class FavoriteFragment : Fragment() {
 
@@ -21,20 +23,33 @@ class FavoriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val favoriteViewModel =
-            ViewModelProvider(this).get(FavoriteViewModel::class.java)
-
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textFavorite
-        favoriteViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
 
         Log.d("AAA", "favorite fragment view created")
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val favoriteViewModel =
+            ViewModelProvider(this).get(FavoriteViewModel::class.java)
+
+
+        favoriteViewModel.genre.observe(viewLifecycleOwner) {
+            binding.filmGenreAndYear.text = it
+        }
+        favoriteViewModel.title.observe(viewLifecycleOwner) {
+            binding.filmTitle.text = it
+        }
+        favoriteViewModel.posterUrl.observe(viewLifecycleOwner) {
+            val imageAddress = it
+            Picasso.get().load(imageAddress).into(binding.filmPosterIcon)
+        }
+
+        favoriteViewModel.getTopFilms()
     }
 
     override fun onDestroyView() {

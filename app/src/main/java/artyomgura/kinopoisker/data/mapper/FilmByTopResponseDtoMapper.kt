@@ -1,11 +1,11 @@
 package artyomgura.kinopoisker.data.mapper
 
-import artyomgura.kinopoisker.data.model.FilmResponseDTO
+import artyomgura.kinopoisker.data.model.FilmByTopResponseDTO
 import artyomgura.kinopoisker.domain.model.Country
 import artyomgura.kinopoisker.domain.model.Film
 import artyomgura.kinopoisker.domain.model.Genre
 
-fun FilmResponseDTO.toFilm(): Film{
+fun FilmByTopResponseDTO.toFilm(): Film {
     val tmpGenres = ArrayList<Genre>()
     val tmpCountries = ArrayList<Country>()
 
@@ -21,9 +21,9 @@ fun FilmResponseDTO.toFilm(): Film{
         posterUrl = posterUrl,
         posterUrlPreview = posterUrlPreview,
         year = year,
-        description = description,
+        description = "without description",
         genres = tmpGenres,
         countries = tmpCountries,
 
-    )
+        )
 }

@@ -1,6 +1,8 @@
 package artyomgura.kinopoisker.data.api
 
+import artyomgura.kinopoisker.data.model.FilmByTopResponseDTO
 import artyomgura.kinopoisker.data.model.FilmResponseDTO
+import artyomgura.kinopoisker.data.model.FilmsListResponseDTO
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -12,12 +14,15 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Path
-
+import retrofit2.http.Query
 
 
 interface KinopoiskerApiService {
     @GET("/api/v2.2/films/{id}")
     suspend fun getFilmById(@Path("id") id: Int): FilmResponseDTO
+
+    @GET("/api/v2.2/films/top")
+    suspend fun getTopFilms(@Query("type") type: String = "TOP_100_POPULAR_FILMS"): FilmsListResponseDTO
 
     companion object Factory {
         fun create(): KinopoiskerApiService {

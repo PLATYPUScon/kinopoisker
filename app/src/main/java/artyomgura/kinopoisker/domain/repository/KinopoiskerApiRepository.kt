@@ -5,5 +5,7 @@ import artyomgura.kinopoisker.domain.model.Film
 
 interface KinopoiskerApiRepository {
     suspend fun getFilmById(id: Int): Film
+    suspend fun getTopFilms(): List<Film>
+
 
 }

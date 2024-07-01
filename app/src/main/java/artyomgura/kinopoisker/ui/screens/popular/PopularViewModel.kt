@@ -29,4 +29,6 @@ class PopularViewModel : ViewModel() {
             _text.postValue(res.name)
         }
     }
+
+//    private val _films = MutableLiveData<>
 }

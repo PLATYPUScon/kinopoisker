@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.retrofit2.kotlin.coroutines.adapter)
+    implementation(libs.picasso)
 
 
     testImplementation(libs.junit)
